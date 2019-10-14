@@ -26,13 +26,15 @@ echo "Install dependence..."
 if [ -f "/etc/arch-release" ]; then
     sudo pacman -S shellcheck
     sudo pacman -S clang clang-tools-extra
-    if [ ! -d "$HOME/build" ]; then
-        mkdir $HOME/build
+    if [ ! -d "$HOME/Build" ]; then
+        mkdir $HOME/Build
     fi
     yay -S dotnet-sdk-preview
-    git clone --depth 1 https://github.com/Microsoft/python-language-server.git $HOME/build/
-    cd $HOME/build/python-language-server/src/LanguageServer/Impl
+    git clone --depth 1 https://github.com/Microsoft/python-language-server.git $HOME/Build/
+    cd $HOME/Build/python-language-server/src/LanguageServer/Impl
     dotnet build
+    chmod a+x $HOME/Build/python-language-server/output/bin/Release/osx-x64/publish/Microsoft.Python.LanguageServer
 fi
 
 echo "Finished."
+printf "Now, you need open Emacs and do \"M-x lsp-python-ms-setup\" or setting \n\"lsp-python-ms-executable\" to an existing install will do."

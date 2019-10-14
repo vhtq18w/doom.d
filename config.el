@@ -43,3 +43,9 @@
 (after! company
   (setq company-idle-delay 0
         company-minimum-prefix-length 3))
+
+;; Python
+(if (and IS-LINUX (featurep! :lang python +lsp))
+    (setq lsp-python-ms-executable (concat (getenv "HOME") "/Build\
+/python-language-server/output/bin/Release/linux-x64/publish/\
+Microsoft.Python.LanguageServer")))
