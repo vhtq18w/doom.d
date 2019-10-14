@@ -112,7 +112,7 @@
        ;;purescript        ; javascript, but functional
        (python +conda      ; beautiful is better than ugly
                +lsp)
-       ;;qt                ; the 'cutest' gui framework ever
+       qt                  ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
