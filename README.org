@@ -1,0 +1,41 @@
+#+TITLE: Burgess Private DOOM config
+* Getting Start
+First, clone this repo to *$XDG_CONFIG_HOME* name as /doom/.
+#+BEGIN_SRC sh
+git clone https://github.com/vhtq18w/doom.d $XDG_CONFIG_HOME/doom
+#+END_SRC
+Then change directory to DOOM-EMACS install DIR.
+#+BEGIN_SRC sh
+bin/doom refresh
+#+END_SRC
+or, change directory to the path of this repo after clone. Just run:
+#+BEGIN_SRC sh
+chmod +x bin/install.sh
+bash bin/install.sh
+#+END_SRC
+* Introduction
+This configuration can't work independently. If you activate some features, you
+must first install pre-dependences. And you can find all modules' dependences in
+each moudles *README*.
+** Common pre-requirements
+- cmake
+- emacs27(recommended)
+- [[https://github.com/hlissner/doom-emacs][doom-emacs]]
+** LSP
+*** C/C++
+- [[https://clang.llvm.org/extra/clangd/][clangd]] - Clangd is an implementation of the Language Server Protocol
+  leveraging Clang.
+*** Haskell
+- [[https://www.haskellstack.org][stack]] - Stack is a cross-platform program for developing Haskell projects.
+- [[https://github.com/haskell/haskell-ide-engine][haskell-ide-engine]] - Hie is an implements the Language Server Protocol.
+*** Python
+- [[https://github.com/microsoft/python-language-server][microsoft/python-language-server]] - Microsoft Python Language Server implements
+  the Language Server Protocol.
+NOTE: When you build microsoft/python-language-server, you must install dotnet
+sdk(version >= 3).
+** Org
+- Tex
+  + xelatex(recommended)
+- Hugo
+** Shell
+- shellcheck
