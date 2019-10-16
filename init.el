@@ -85,7 +85,8 @@
        ;;ess               ; emacs speaks statistics
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;go                ; the hipster dialect
-       ;;(haskell +intero) ; a language that's lazier than I am
+       (haskell +intero    ; a language that's lazier than I am
+                +lsp)
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
@@ -184,6 +185,12 @@
        workspaces          ; tab emulation, persistence & separate workspaces
 )
 
+;; Org
+(unless IS-WINDOWS
+  (setq org-directory (concat (getenv "HOME") "/org/")))
+(defvar org-todo-file-path (concat org-directory "todo.org"))
+
+;; UI
 (setq browse-url-browser-function 'browse-url-default-browser
       display-line-numbers-type nil
       frame-title-format "%b"

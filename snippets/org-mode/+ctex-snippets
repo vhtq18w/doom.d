@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: ctex template
+# key: ctex
+# --
+#+LATEX_HEADER: \usepackage{ctex}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \renewcommand{\@seccntformat}[1]{}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \lstdefinestyle{lfonts}{ basicstyle = \footnotesize\ttfamily, stringstyle = \color{purple}, keywordstyle = \color{blue!60!black}\bfseries, commentstyle = \color{olive}\scshape,}
+#+LATEX_HEADER: \lstdefinestyle{lnumbers}{ numbers = left, numberstyle = \tiny, numbersep = 1em, firstnumber = 1, stepnumber = 1, }
+#+LATEX_HEADER: \lstdefinestyle{llayout}{ breaklines = true, tabsize = 2, columns = flexible, }
+#+LATEX_HEADER: \lstdefinestyle{lgeometry}{ xleftmargin = 20pt, xrightmargin = 0pt, frame = tb, framesep = \fboxsep, framexleftmargin = 20pt, }
+#+LATEX_HEADER: \lstdefinestyle{lgeneral}{ style = lfonts, style = lnumbers, style = llayout, style = lgeometry, }
+#+LATEX_HEADER: \lstdefinestyle{python}{ language = {Python}, style = lgeneral, }
+#+LATEX_HEADER: \lstset{style=lgeneral}

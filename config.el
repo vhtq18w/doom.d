@@ -44,12 +44,41 @@
   (setq company-idle-delay 0
         company-minimum-prefix-length 2))
 
+;; LSP
+(when (featurep! :tools lsp)
+  (setq lsp-ui-sideline-enable nil
+        lsp-enable-indentation nil
+        lsp-enable-on-type-formatting nil
+        lsp-enable-symbol-highlighting nil))
+
+;; Org
+(when (featurep! +hugo)
+  (after! org
+    (add-to-list 'org-capture-templates
+               '("h"
+                 "Hugo post"
+                 entry
+                 (file+headline org-todo-file-path "BLOG")
+                 (function brs-org-hugo-new-subsubtree-post-capture-template)
+                 ))))
+(after! org
+  (add-to-list 'org-capture-templates
+               '("w"                ;`org-capture' binding + w
+                 "Work todo"
+                 entry
+                 (file+headline org-todo-file-path "Work")
+                 ))
+  (setq org-latex-listings t)
+  (setq org-latex-pdf-process
+        '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f")))
+
 ;; Python
 (if (and IS-LINUX (featurep! :lang python +lsp))
     (setq lsp-python-ms-executable (concat (getenv "HOME") "/Build\
 /python-language-server/output/bin/Release/linux-x64/publish/\
 Microsoft.Python.LanguageServer")))
 
-;; Org
-(unless IS-WINDOWS
-  (setq org-directory (concat (getenv "HOME") "/org")))
+;; IRC
+;; sync username and password is unsafe, ignore this file.
+(when (featurep! :app irc)
+  (load! "+irc-info"))
