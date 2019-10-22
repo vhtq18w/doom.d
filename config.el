@@ -40,6 +40,28 @@
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100))
 
+;; C/C++
+;; Add a cc-mode style for editing LLVM C and C++ code
+(when (featurep! :lang cc)
+  (c-add-style
+   "llvm"
+   '("gnu"
+     (c-basic-offset . 2)
+     (fill-column . 80)
+     (c++-indent-level . 2)
+     (indent-tabs-mode . nil)
+     (c-comment-only-line-offset . 0)
+     (c-offsets-alist
+      (arglist-intro . ++)
+      (innamespace . 0)
+      (member-init-intro . ++)
+      (statement-cont . +))))
+  (after! cc-mode
+    (setq-default c-basic-offset 2
+                  tab-width 2
+                  c-default-style "llvm")))
+
+;; Company
 (after! company
   (setq company-idle-delay 0
         company-minimum-prefix-length 2))
@@ -74,7 +96,7 @@
 
 ;; Python
 (if (and IS-LINUX (featurep! :lang python +lsp))
-    (setq lsp-python-ms-executable (concat (getenv "HOME") "/Build\
+    (setq lsp-python-ms-executable (concat (getenv "HOME") "/Studio/Builds\
 /python-language-server/output/bin/Release/linux-x64/publish/\
 Microsoft.Python.LanguageServer")))
 

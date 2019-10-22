@@ -6,6 +6,8 @@
 (when IS-WINDOWS
   (setq default-directory (concat "C:" (getenv "HOMEPATH"))))
 
+(setq SHOULD-USE-VTERM t)
+
 (doom! ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
        ;; should be loaded late.
@@ -117,7 +119,7 @@
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        (:if IS-LINUX sh)   ; she sells {ba,z,fi}sh shells on the C xor
@@ -128,10 +130,12 @@
        ;;vala              ; GObjective-C
 
        :term
-       (:if IS-WINDOWS eshell)            ; a consistent, cross-platform shell (WIP)
-       ;;shell                            ; a terminal REPL for Emacs
-       ;;term                             ; terminals in Emacs
-       (:if IS-LINUX vterm)               ; another terminals in Emacs
+       (:if (not SHOULD-USE-VTERM)    ; a consistent, cross-platform shell (WIP)
+         eshell)
+       ;;shell                        ; a terminal REPL for Emacs
+       ;;term                         ; terminals in Emacs
+       (:if SHOULD-USE-VTERM
+           vterm)                     ; another terminals in Emacs
 
        :tools
        ansible
@@ -187,7 +191,7 @@
 
 ;; Org
 (unless IS-WINDOWS
-  (setq org-directory (concat (getenv "HOME") "/org/")))
+  (setq org-directory (concat (getenv "HOME") "Studio/org/")))
 (defvar org-todo-file-path (concat org-directory "todo.org"))
 
 ;; UI
@@ -197,10 +201,13 @@
       which-key-idle-delay 0.2)
 
 (unless IS-WINDOWS
-  (setq doom-theme 'doom-one-light))
+  (setq doom-theme 'doom-dracula))
 
 (when IS-WINDOWS
   (setq doom-theme 'doom-nord-light))
+
+(when (not (display-graphic-p))
+  (setq doom-theme 'doom-nord))
 
 (setq doom-font (font-spec :family "DejaVu Sans Mono" :size 14)
       doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 16))
