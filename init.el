@@ -143,7 +143,7 @@
        direnv
        ;;docker
        editorconfig        ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
+       ein                 ; tame Jupyter notebooks with emacs
        eval                ; run code, run (also, repls)
        flycheck            ; tasing you for every semicolon you forget
        flyspell            ; tasing you for misspelling mispelling
@@ -191,7 +191,7 @@
 
 ;; Org
 (unless IS-WINDOWS
-  (setq org-directory (concat (getenv "HOME") "Studio/org/")))
+  (setq org-directory (concat (getenv "HOME") "/Studio/org/")))
 (defvar org-todo-file-path (concat org-directory "todo.org"))
 
 ;; UI

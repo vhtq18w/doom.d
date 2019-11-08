@@ -66,6 +66,10 @@
   (setq company-idle-delay 0
         company-minimum-prefix-length 2))
 
+;; Jupyter
+(when (featurep! :tools ein)
+  (setq +ein-notebook-dir (concat (getenv "HOME") "/Studio/Projects/Note-Collection")))
+
 ;; LSP
 (when (featurep! :tools lsp)
   (setq lsp-ui-sideline-enable nil

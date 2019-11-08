@@ -21,6 +21,17 @@ each moudles *README*.
 - cmake
 - emacs27(recommended)
 - [[https://github.com/hlissner/doom-emacs][doom-emacs]]
+** Python
+*** Anacaonda3
+I replaced conda with pip to manage virtual python environment. So anaconda3 is
+recommended install. Related modules and features are:
+- lang/python +conda
+- tools/ein
+*** Jupyter
+I recently start used Jupyter to write my rust and haskell learning note, if you
+also use Jupyter, you should install and configured Jupyter. The related
+variables are:
+- /config.el/: ~+ein-notebook-dir~~
 ** LSP
 *** C/C++
 - [[https://clang.llvm.org/extra/clangd/][clangd]] - Clangd is an implementation of the Language Server Protocol
