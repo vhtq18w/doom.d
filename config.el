@@ -40,6 +40,12 @@
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100))
 
+(when (display-graphic-p)
+  (add-hook! 'doom-init-ui-hook
+    (defun brs/vterm-startup ()
+      (vterm)
+      (doom/reload-theme))))
+
 ;; C/C++
 ;; Add a cc-mode style for editing LLVM C and C++ code
 (when (featurep! :lang cc)
@@ -67,8 +73,8 @@
         company-minimum-prefix-length 2))
 
 ;; Jupyter
-(when (featurep! :tools ein)
-  (setq +ein-notebook-dir (concat (getenv "HOME") "/Studio/Projects/Note-Collection")))
+;;(when (featurep! :tools ein)
+;;  (setq +ein-notebook-dir (concat (getenv "HOME") "/Studio/Projects/Note-Collection")))
 
 ;; LSP
 (when (featurep! :tools lsp)
