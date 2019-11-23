@@ -40,11 +40,11 @@
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100))
 
-(when (display-graphic-p)
-  (add-hook! 'doom-init-ui-hook
-    (defun brs/vterm-startup ()
-      (vterm)
-      (doom/reload-theme))))
+;; (when (display-graphic-p)
+;;   (add-hook! 'doom-init-ui-hook
+;;     (defun brs/vterm-startup ()
+;;       (vterm)
+;;       (doom/reload-theme))))
 
 ;; C/C++
 ;; Add a cc-mode style for editing LLVM C and C++ code
@@ -84,25 +84,25 @@
         lsp-enable-symbol-highlighting nil))
 
 ;; Org
-(when (featurep! +hugo)
+(when (featurep! :lang org)
   (after! org
     (add-to-list 'org-capture-templates
-               '("h"
-                 "Hugo post"
-                 entry
-                 (file+headline org-todo-file-path "BLOG")
-                 (function brs-org-hugo-new-subsubtree-post-capture-template)
-                 ))))
-(after! org
-  (add-to-list 'org-capture-templates
-               '("w"                ;`org-capture' binding + w
-                 "Work todo"
-                 entry
-                 (file+headline org-todo-file-path "Work")
-                 ))
-  (setq org-latex-listings t)
-  (setq org-latex-pdf-process
-        '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f")))
+                 '("w"
+                   "Work todo"
+                   entry
+                   (file+headline org-todo-file-path "Work")
+                   ))
+    (when (featurep! +hugo)
+      (add-to-list 'org-capture-templates
+                   '("h"
+                     "Hugo post"
+                     entry
+                     (file+headline org-todo-file-path "BLOG")
+                     (function brs-org-hugo-new-subsubtree-post-capture-template)
+                     )))
+    (setq org-latex-listings t)
+    (setq org-latex-pdf-process
+          '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))))
 
 ;; Python
 (if (and IS-LINUX (featurep! :lang python +lsp))
@@ -114,3 +114,6 @@ Microsoft.Python.LanguageServer")))
 ;; sync username and password is unsafe, ignore this file.
 (when (featurep! :app irc)
   (load! "+irc-info"))
+
+;; @see https://github.com/magit/magit/issues/2492
+(setq-default with-editor-emacsclient-executable "emacsclient")

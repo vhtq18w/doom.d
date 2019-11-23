@@ -6,6 +6,13 @@
 (when IS-WINDOWS
   (setq default-directory (concat "C:" (getenv "HOMEPATH"))))
 
+(setq current-user-xdg-config-home
+  (file-truename (getenv "XDG_CONFIG_HOME")))
+(setq current-user-xdg-cache-home
+  (file-truename (getenv "XDG_CACHE_HOME")))
+(setq current-user-xdg-data-home
+  (file-truename (getenv "XDG_DATA_HOME")))
+
 (setq SHOULD-USE-VTERM t)
 
 (doom! ;; Applications are complex and opinionated modules that transform Emacs
@@ -99,7 +106,7 @@
        ;;lean
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       ;;markdown          ; writing docs for people to ignore
+       markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -113,21 +120,24 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python +conda      ; beautiful is better than ugly
-               +lsp)
-       qt                  ; the 'cutest' gui framework ever
+       ;;(python +conda      ; beautiful is better than ugly
+       ;;        +lsp)
+       ;;qt                  ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;;scheme            ; a fully conniving family of lisps
+       scheme            ; a fully conniving family of lisps
        (:if IS-LINUX sh)   ; she sells {ba,z,fi}sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
        ;;vala              ; GObjective-C
+
+       :private
+       ;;theme
 
        :term
        (:if (not SHOULD-USE-VTERM)    ; a consistent, cross-platform shell (WIP)
@@ -167,7 +177,7 @@
        deft                ; notational velocity for Emacs
        doom                ; what makes DOOM look the way it does
        ;;doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column         ; a `fill-column' indicator
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
@@ -191,7 +201,7 @@
 
 ;; Org
 (unless IS-WINDOWS
-  (setq org-directory (concat (getenv "HOME") "/Studio/org/")))
+  (setq org-directory (file-truename (concat (getenv "HOME") "/studio/org/"))))
 (defvar org-todo-file-path (concat org-directory "todo.org"))
 
 ;; UI
@@ -200,14 +210,21 @@
       frame-title-format "%b"
       which-key-idle-delay 0.2)
 
-(unless IS-WINDOWS
-  (setq doom-theme 'doom-dracula))
+(when (featurep! :ui doom)
+  (unless IS-WINDOWS
+    (setq doom-theme 'doom-dracula))
 
-(when IS-WINDOWS
-  (setq doom-theme 'doom-nord-light))
+  (when IS-WINDOWS
+    (setq doom-theme 'doom-nord-light))
 
-(when (not (display-graphic-p))
-  (setq doom-theme 'doom-nord))
+  (when (not (display-graphic-p))
+    (setq doom-theme 'doom-nord)))
 
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 14)
+(setq USE-ZENBURN-THEME t)
+(when (featurep! :private theme)
+  (setq USE-ZENBURN-THEME t))
+(when USE-ZENBURN-THEME
+  (setq doom-theme 'zenburn))
+
+(setq doom-font (font-spec :family "Fira Code" :size 14)
       doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 16))
