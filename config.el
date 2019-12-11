@@ -76,6 +76,10 @@
 ;;(when (featurep! :tools ein)
 ;;  (setq +ein-notebook-dir (concat (getenv "HOME") "/Studio/Projects/Note-Collection")))
 
+;; LaTeX
+(when (featurep! :lang latex)
+  (setq +latex-viewers '(evince)))
+
 ;; LSP
 (when (featurep! :tools lsp)
   (setq lsp-ui-sideline-enable nil
@@ -106,9 +110,9 @@
 
 ;; Python
 (if (and IS-LINUX (featurep! :lang python +lsp))
-    (setq lsp-python-ms-executable (concat (getenv "HOME") "/Studio/Builds\
-/python-language-server/output/bin/Release/linux-x64/publish/\
-Microsoft.Python.LanguageServer")))
+    (setq lsp-python-ms-executable
+          (concat (getenv "MICROSOFT_PYTHON_LANGUAGE_SERVER_HOME_DIR") "/output\
+/bin/Release/Microsoft.Python.LanguageServer")))
 
 ;; IRC
 ;; sync username and password is unsafe, ignore this file.

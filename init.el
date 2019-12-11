@@ -102,7 +102,7 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       ;;latex             ; writing papers in Emacs has never been so fun
+       latex               ; writing papers in Emacs has never been so fun
        ;;lean
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
@@ -120,20 +120,20 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;;(python +conda      ; beautiful is better than ugly
-       ;;        +lsp)
-       ;;qt                  ; the 'cutest' gui framework ever
-       ;;racket            ; a DSL for DSLs
+       (python +conda      ; beautiful is better than ugly
+               +lsp)
+       qt                  ; the 'cutest' gui framework ever
+       racket              ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       scheme            ; a fully conniving family of lisps
+       scheme              ; a fully conniving family of lisps
        (:if IS-LINUX sh)   ; she sells {ba,z,fi}sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       ;;web               ; the tubes
+       web                 ; the tubes
        ;;vala              ; GObjective-C
 
        :private
@@ -164,6 +164,7 @@
        ;;macos             ; MacOS-specific commands
        magit               ; a git porcelain for Emacs
        make                ; run make tasks from Emacs
+       meson
        ;;pass              ; password manager for nerds
        pdf                 ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -226,5 +227,6 @@
 (when USE-ZENBURN-THEME
   (setq doom-theme 'zenburn))
 
-(setq doom-font (font-spec :family "Fira Code" :size 14)
+(setq doom-font (font-spec :family "Fira Mono" :size 14)
       doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 16))
+;;(setq doom-font (font-spec :family "Sarasa Mono SC" :size 14))
