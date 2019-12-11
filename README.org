@@ -34,8 +34,8 @@ variables are:
 - /config.el/: ~+ein-notebook-dir~~
 ** LSP
 *** C/C++
-- +[[https://clang.llvm.org/extra/clangd/][clangd]] - Clangd is an implementation of the Language Server Protocol+
-+leveraging Clang.+
+- +[[https://clang.llvm.org/extra/clangd/][clangd]] - Clangd is an implementation of the Language Server Protocol
+  leveraging Clang.+
 - [[https://github.com/MaskRay/ccls][ccls]] - Another C/C++/Objective-C language server.
 *** Haskell
 - [[https://www.haskellstack.org][stack]] - Stack is a cross-platform program for developing Haskell projects.
